@@ -15,8 +15,9 @@ object StandardHttpService {
   implicit val system: ActorSystem = ActorSystem("service-system")
   implicit val materializer: ActorMaterializer = ActorMaterializer()
 
-  def f1(route: Route): Unit = {
-    route.recordMetrics(metricsRegistry, metricsSettings)
+  // only when used in apply method
+  def apply(route: Route): Unit = {
+    route.recordMetrics(metricsRegistry)
   }
 
 }
